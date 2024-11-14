@@ -64,10 +64,10 @@ class Gridder:
         ax = np.ravel(ax)
 
         titles = [
-            "Ungerasterte $(u,v)$-Abdeckung",
-            "Gerasterte $(u,v)$-Abdeckung",
-            "Amplitude der Visibilities",
-            "Phase der Visibilities",
+            "Ungridded $(u,v)$-coverage",
+            "Gridded $(u,v)$-coverage",
+            "Amplitude of visibilities",
+            "Phase of visibilities",
             "Dirty Image",
         ]
 
@@ -200,10 +200,10 @@ class Gridder:
             fig, ax = plt.subplots(layout="constrained")
 
         img = self.mask
-            
+
         if invert_x:
             img = np.fliplr(img)
-            
+
         im0 = ax.imshow(
             np.rot90(img, rot90),
             origin="lower",
@@ -215,10 +215,10 @@ class Gridder:
 
         ax.set_xlim(crop[0][0], crop[0][1])
         ax.set_ylim(crop[1][0], crop[1][1])
-        ax.set_xlabel("Pixel")
-        ax.set_ylabel("Pixel")
+        ax.set_xlabel("pixels")
+        ax.set_ylabel("pixels")
         fig.colorbar(
-            im0, ax=ax, shrink=colorbar_shrink, label="$(u,v)$ pro Pixel in 1 / px"
+            im0, ax=ax, shrink=colorbar_shrink, label="$(u,v)$ per pixel in 1 / px"
         )
 
         if save_to is not None:
@@ -257,7 +257,7 @@ class Gridder:
         rot90: int, optional
             The amount of times the image is supposed to be rotated by 90
             degrees clockwise
-            
+
         invert_x: bool, optional
             Whether to invert the x-axis of the image
 
@@ -293,7 +293,7 @@ class Gridder:
 
         if invert_x:
             img = np.fliplr(img)
-        
+
         im = ax.imshow(
             np.rot90(img, rot90),
             origin="lower",
@@ -305,10 +305,10 @@ class Gridder:
 
         ax.set_xlim(crop[0][0], crop[0][1])
         ax.set_ylim(crop[1][0], crop[1][1])
-        ax.set_xlabel("Pixel")
-        ax.set_ylabel("Pixel")
+        ax.set_xlabel("pixels")
+        ax.set_ylabel("pixels")
 
-        fig.colorbar(im, ax=ax, shrink=colorbar_shrink, label="Intensität in a.u.")
+        fig.colorbar(im, ax=ax, shrink=colorbar_shrink, label="Intensity in a.u.")
 
         if save_to is not None:
             fig.savefig(save_to, **save_args)
@@ -381,7 +381,7 @@ class Gridder:
 
         if invert_x:
             img = np.fliplr(img)
-        
+
         im = ax.imshow(
             np.rot90(img),
             origin="lower",
@@ -393,14 +393,14 @@ class Gridder:
 
         ax.set_xlim(crop[0][0], crop[0][1])
         ax.set_ylim(crop[1][0], crop[1][1])
-        ax.set_xlabel("Pixel")
-        ax.set_ylabel("Pixel")
+        ax.set_xlabel("pixels")
+        ax.set_ylabel("pixels")
 
         cbar = fig.colorbar(
             im,
             ax=ax,
             shrink=colorbar_shrink,
-            label="Phasendifferenz in rad",
+            label="Phase difference in rad",
         )
         cbar.set_ticks(np.arange(-np.pi, 3 / 2 * np.pi, np.pi / 2))
         cbar.set_ticklabels(["$-\\pi$", "$-\\pi/2$", "$0$", "$\\pi/2$", "$\\pi$"])
@@ -514,13 +514,13 @@ class Gridder:
         if annotation is not None:
             _plot_text(annotation, ax, (0.05, 0.95))
 
-        ax.set_xlabel("Pixel")
-        ax.set_ylabel("Pixel")
+        ax.set_xlabel("pixels")
+        ax.set_ylabel("pixels")
         fig.colorbar(
             im,
             ax=ax,
             shrink=colorbar_shrink,
-            label="Flussdichte in Jy/px",
+            label="Flux density in Jy/px",
         )
 
         if save_to is not None:
