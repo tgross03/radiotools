@@ -705,7 +705,7 @@ def _plot_text(
     text,
     ax,
     pos=(0, 1),
-    text_options=dict(fontsize=15),
+    text_options=dict(fontsize=15, color="black"),
     bbox=dict(facecolor="lightgray", edgecolor="black", alpha=0.8, boxstyle="round"),
 ):
     textanchor = ax.get_window_extent()
